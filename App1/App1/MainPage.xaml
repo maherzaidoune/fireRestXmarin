@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:App1"
+             x:Class="App1.MainPage"
+             >
+
+    <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+
+        <Entry x:Name="Username" Placeholder="enter the name "></Entry>
+        <Entry x:Name="Lastname" Placeholder="enter the  last name " />
+        <Button Text="add data" Clicked="addData"></Button>
+        <Button Text="get data" Clicked="getData"></Button>
+        <Label x:Name="data"/>
+    </StackLayout>
+
+</ContentPage>
