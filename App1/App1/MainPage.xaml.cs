@@ -16,7 +16,7 @@ namespace App1
 	public partial class MainPage : ContentPage
 	{
         
-        private string url = "https://essths-9bd84.firebaseio.com/users.json";
+        private string url = "https://yourfirebaseprojectname.firebaseio.com/users.json";
         private HttpClient client = new HttpClient();
 
         public MainPage()
@@ -68,7 +68,7 @@ namespace App1
 
             var stream = File.Open(file.Path, FileMode.Open);
 
-            var task = new FirebaseStorage("essths-9bd84.appspot.com")
+            var task = new FirebaseStorage("youfirebaseprojectname.appspot.com")
             .Child("data")
             .Child("random")
             .Child("file.png")
