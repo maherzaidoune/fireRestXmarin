@@ -1,6 +1,10 @@
-﻿using Newtonsoft.Json;
+﻿using Firebase.Storage;
+using Newtonsoft.Json;
+using Plugin.Media;
+using Plugin.Media.Abstractions;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -36,5 +40,46 @@ namespace App1
             var firedata = await client.GetStringAsync(url);
             data.Text = firedata.ToString();
         }
+        public async void photo(Object sender,EventArgs e)
+        {
+            await CrossMedia.Current.Initialize();
+
+            if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
+            {
+                DisplayAlert("No Camera", ":( No camera available.", "OK");
+                return;
+            }
+
+            var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
+            {
+                SaveToAlbum = true
+
+                 //Directory = "Sample",
+                 // Name = "test.jpg"
+             });
+
+
+            if (file == null)
+                return;
+
+            await DisplayAlert("File Location", file.Path, "OK");
+
+
+
+            var stream = File.Open(file.Path, FileMode.Open);
+
+            var task = new FirebaseStorage("essths-9bd84.appspot.com")
+            .Child("data")
+            .Child("random")
+            .Child("file.png")
+            .PutAsync(stream);
+
+            var downloadUrl = await task;
+            data.Text = downloadUrl;
+
+
+        }
+
+       
     }
 }

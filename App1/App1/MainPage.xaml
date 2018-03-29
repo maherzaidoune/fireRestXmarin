@@ -7,6 +7,7 @@
 
     <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
 
+        <Button Text="take a photo" Clicked="photo"></Button>
         <Entry x:Name="Username" Placeholder="enter the name "></Entry>
         <Entry x:Name="Lastname" Placeholder="enter the  last name " />
         <Button Text="add data" Clicked="addData"></Button>
